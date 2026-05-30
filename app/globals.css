@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0f0e0c;
+  --ink-2: #2a2825;
+  --muted: #6b6860;
+  --muted-2: #9c9890;
+  --surface: #fafaf7;
+  --surface-2: #f2f1ec;
+  --surface-3: #e8e6df;
+  --border: #e0ded6;
+  --border-2: #cccac0;
+  --avl-teal: #0e7c6a;
+  --avl-teal-light: #e8f5f2;
+  --avl-amber: #c96a0a;
+  --avl-amber-light: #fef3e2;
+  --avl-navy: #1b2a4a;
+  --avl-navy-light: #eef1f8;
+  --avl-purple: #6c3fc5;
+  --avl-purple-light: #f2eeff;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@layer components {
+  .avl-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider;
+  }
+  .avl-badge-teal {
+    background-color: var(--avl-teal-light);
+    color: var(--avl-teal);
+    @apply avl-badge;
+  }
+  .avl-badge-amber {
+    background-color: var(--avl-amber-light);
+    color: var(--avl-amber);
+    @apply avl-badge;
+  }
+  .avl-badge-navy {
+    background-color: var(--avl-navy-light);
+    color: var(--avl-navy);
+    @apply avl-badge;
+  }
+  .avl-badge-purple {
+    background-color: var(--avl-purple-light);
+    color: var(--avl-purple);
+    @apply avl-badge;
+  }
+  .avl-section-rule {
+    height: 1px;
+    background: linear-gradient(to right, var(--avl-teal), var(--border), transparent);
+    border: none;
+    @apply mb-8;
+  }
+  .card-lift {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .link-underline {
+    @apply underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all;
+  }
+  .tag-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background-color: var(--surface-3);
+    color: var(--muted);
+    @apply inline-block px-2 py-0.5 rounded-sm;
+  }
+}
