@@ -2,101 +2,169 @@ import type { Metadata } from "next";
 import { courses, otherCourses } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Teaching",
-  description: "Live course dashboards and teaching portfolio — Computer Vision, Digital Image Processing, and Statistics for Data Science at East West University.",
+  title: "Courses",
+  description:
+    "Live course dashboards and teaching portfolio — Computer Vision, Digital Image Processing, and Statistics for Data Science at East West University.",
 };
 
-const colorMap = {
-  teal: { accent: "var(--avl-teal)", light: "var(--avl-teal-light)", border: "4px solid var(--avl-teal)" },
-  amber: { accent: "var(--avl-amber)", light: "var(--avl-amber-light)", border: "4px solid var(--avl-amber)" },
-  purple: { accent: "var(--avl-purple)", light: "var(--avl-purple-light)", border: "4px solid var(--avl-purple)" },
+const accentMap: Record<string, { color: string; bg: string; label: string }> = {
+  teal:   { color: "#16324f", bg: "var(--surface-container-low)", label: "COMPUTER VISION" },
+  amber:  { color: "#16324f", bg: "var(--surface-container-low)", label: "DIGITAL IMAGE PROCESSING" },
+  purple: { color: "#16324f", bg: "var(--surface-container-low)", label: "STATISTICS · DATA SCIENCE" },
 };
 
 export default function TeachingPage() {
   return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "3rem 1.5rem" }}>
+    <div
+      style={{ maxWidth: 1280, margin: "0 auto", padding: "64px 64px 80px" }}
+      className="px-4 md:px-16"
+    >
       {/* Page header */}
-      <div className="mb-10">
-        <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, color: "var(--avl-teal)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>East West University</p>
-        <h1 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
+      <header
+        style={{
+          borderLeft: "5px solid #16324f",
+          borderTop: "3px solid #8a1538",
+          padding: "24px 28px",
+          marginBottom: 64,
+          background: "var(--surface)",
+          boxShadow: "0 2px 12px rgba(22, 50, 79, 0.06)",
+        }}
+      >
+        <p className="ds-label-caps" style={{ color: "#8a1538", marginBottom: 10 }}>
+          East West University · Department of CSE
+        </p>
+        <h1 className="ds-display" style={{ marginBottom: 12 }}>
           Teaching Hub
         </h1>
-        <p style={{ fontSize: "1.0625rem", color: "var(--muted)", maxWidth: 600, lineHeight: 1.7 }}>
-          Interactive course dashboards for three active courses at EWU — each linked to a live Vercel deployment with lectures, modules, lab manuals, and assessments.
+        <p
+          style={{
+            fontFamily: '"Segoe UI", system-ui, sans-serif',
+            fontSize: 17,
+            lineHeight: "28px",
+            color: "#667085",
+            maxWidth: 580,
+          }}
+        >
+          Interactive dashboards for three active courses — each linked to a
+          live deployment with lectures, modules, lab manuals, and assessments.
         </p>
-      </div>
+      </header>
 
       {/* Live dashboards */}
-      <section className="mb-12">
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.3rem", fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>
-          Live Course Dashboards
-        </h2>
-        <hr className="avl-section-rule" />
+      <section style={{ marginBottom: 72 }}>
+        <div className="section-head">
+          <p className="section-label">Teaching Portfolio</p>
+          <div className="title-row">
+            <h2 className="ds-headline-md">Live Course Dashboards</h2>
+          </div>
+        </div>
 
-        <div className="flex flex-col gap-5">
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {courses.map((c) => {
-            const col = colorMap[c.color];
+            const acc = accentMap[c.color];
             return (
-              <div
-                key={c.code}
-                style={{
-                  backgroundColor: "white",
-                  border: "1px solid var(--border)",
-                  borderRadius: 12,
-                  overflow: "hidden",
-                  display: "flex",
-                }}
-              >
+              <div key={c.code} className="course-row">
                 {/* Left accent strip */}
-                <div style={{ width: 4, flexShrink: 0, backgroundColor: col.accent }} />
+                <div style={{ width: 5, flexShrink: 0, backgroundColor: acc.color }} />
 
-                <div style={{ padding: "1.5rem", flex: 1 }}>
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span className={`avl-badge-${c.color}`}>{c.code}</span>
-                        <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: "var(--muted-2)" }}>
-                          {c.level} · {c.credits} Credits
-                        </span>
+                <div style={{ padding: "28px 32px", flex: 1, minWidth: 0 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: 24,
+                    }}
+                  >
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      {/* Course label + icon row */}
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                        <p className="ds-label-caps" style={{ color: "#8a1538" }}>
+                          {acc.label}
+                        </p>
+                        <span style={{ fontSize: 16, lineHeight: 1 }}>{c.icon}</span>
                       </div>
-                      <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem", letterSpacing: "-0.02em" }}>
+
+                      <h3
+                        style={{
+                          fontFamily: '"Segoe UI", system-ui, sans-serif',
+                          fontSize: 20,
+                          fontWeight: 600,
+                          color: "#16324f",
+                          marginBottom: 4,
+                          letterSpacing: "-0.01em",
+                        }}
+                      >
                         {c.title}
                       </h3>
-                      <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.65, maxWidth: 600, marginBottom: "1rem" }}>{c.desc}</p>
+                      <p
+                        style={{
+                          fontFamily: '"Segoe UI", system-ui, sans-serif',
+                          fontSize: 12,
+                          fontWeight: 600,
+                          color: acc.color,
+                          marginBottom: 12,
+                          letterSpacing: "0.02em",
+                        }}
+                      >
+                        {c.code} · {c.level} · {c.credits} Credits
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: '"Segoe UI", system-ui, sans-serif',
+                          fontSize: 14,
+                          color: "#667085",
+                          lineHeight: 1.65,
+                          maxWidth: 560,
+                          marginBottom: 18,
+                        }}
+                      >
+                        {c.desc}
+                      </p>
 
                       {/* Stats row */}
-                      <div className="flex flex-wrap gap-4 mb-4" style={{ fontFamily: "'Space Mono', monospace", fontSize: 12 }}>
-                        <span style={{ color: "var(--muted-2)" }}>
-                          <span style={{ color: col.accent, fontWeight: 700 }}>{c.lectures}</span> Lectures
-                        </span>
-                        <span style={{ color: "var(--muted-2)" }}>
-                          <span style={{ color: col.accent, fontWeight: 700 }}>{c.modules}</span> Modules
-                        </span>
+                      <div style={{ display: "flex", gap: 36, marginBottom: 18 }}>
+                        {[
+                          { num: c.lectures, label: "Lectures" },
+                          { num: c.modules, label: "Modules" },
+                          { num: c.credits, label: "Credits" },
+                        ].map((s) => (
+                          <div key={s.label}>
+                            <p
+                              style={{
+                                fontFamily: '"Segoe UI", system-ui, sans-serif',
+                                fontSize: 22,
+                                fontWeight: 700,
+                                color: acc.color,
+                                lineHeight: 1,
+                                marginBottom: 3,
+                              }}
+                            >
+                              {s.num}
+                            </p>
+                            <p className="ds-label-caps" style={{ color: "#667085" }}>
+                              {s.label}
+                            </p>
+                          </div>
+                        ))}
                       </div>
 
                       {/* Topic tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {c.topics.map((t) => <span key={t} className="tag-pill">{t}</span>)}
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                        {c.topics.map((t) => (
+                          <span key={t} className="tag-pill">{t}</span>
+                        ))}
                       </div>
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex flex-col gap-2 flex-shrink-0">
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10, flexShrink: 0 }}>
                       <a
                         href={c.dashboardUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                          display: "inline-block",
-                          padding: "9px 18px",
-                          borderRadius: 8,
-                          fontSize: 13,
-                          fontWeight: 700,
-                          textDecoration: "none",
-                          backgroundColor: col.accent,
-                          color: "white",
-                          whiteSpace: "nowrap",
-                        }}
+                        className="btn-primary"
                       >
                         Open Dashboard ↗
                       </a>
@@ -104,19 +172,9 @@ export default function TeachingPage() {
                         href={c.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                          display: "inline-block",
-                          padding: "9px 18px",
-                          borderRadius: 8,
-                          fontSize: 13,
-                          fontWeight: 600,
-                          textDecoration: "none",
-                          border: "1px solid var(--border-2)",
-                          color: "var(--muted)",
-                          whiteSpace: "nowrap",
-                        }}
+                        className="btn-secondary"
                       >
-                        Source ↗
+                        Source Code ↗
                       </a>
                     </div>
                   </div>
@@ -127,40 +185,95 @@ export default function TeachingPage() {
         </div>
       </section>
 
-      {/* Other courses taught */}
-      <section>
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.3rem", fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>
-          Other Courses Taught
-        </h2>
-        <hr className="avl-section-rule" />
+      {/* Other courses */}
+      <section style={{ marginBottom: 56 }}>
+        <div className="section-head">
+          <p className="section-label">Teaching History</p>
+          <div className="title-row">
+            <h2 className="ds-headline-md">Other Courses Taught</h2>
+          </div>
+        </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 12,
+          }}
+        >
           {otherCourses.map((c) => (
             <div
               key={c.code}
               style={{
-                backgroundColor: "white",
+                backgroundColor: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: 10,
-                padding: "1.125rem 1.25rem",
+                borderRadius: 8,
+                borderLeft: "3px solid var(--border)",
+                padding: "18px 22px",
+                transition: "border-color 0.2s ease, border-left-color 0.2s ease",
               }}
             >
-              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: "var(--avl-teal)", fontWeight: 700, marginBottom: 4 }}>{c.code}</p>
-              <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 600, color: "var(--ink)", marginBottom: 4 }}>{c.title}</p>
-              <p style={{ fontSize: 12, color: "var(--muted-2)" }}>{c.level}</p>
+              <p className="ds-label-code" style={{ marginBottom: 6 }}>
+                {c.code}
+              </p>
+              <p
+                style={{
+                  fontFamily: '"Segoe UI", system-ui, sans-serif',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: "#16324f",
+                  marginBottom: 4,
+                }}
+              >
+                {c.title}
+              </p>
+              <p
+                style={{
+                  fontFamily: '"Segoe UI", system-ui, sans-serif',
+                  fontSize: 13,
+                  color: "#667085",
+                }}
+              >
+                {c.level}
+              </p>
             </div>
           ))}
         </div>
-
-        {/* Teaching note */}
-        <div style={{ marginTop: "2rem", padding: "1.25rem 1.5rem", backgroundColor: "var(--avl-teal-light)", borderRadius: 10, borderLeft: "4px solid var(--avl-teal)" }}>
-          <p style={{ fontSize: 14, color: "var(--avl-teal)", lineHeight: 1.7 }}>
-            <strong>Department of Computer Science and Engineering</strong> · East West University, Dhaka 1212, Bangladesh.
-            All courses are delivered at the Main Campus. For enrollment and syllabus queries, contact{" "}
-            <a href="mailto:rifat.rashid@ewubd.edu" style={{ color: "var(--avl-teal)", fontWeight: 600 }}>rifat.rashid@ewubd.edu</a>.
-          </p>
-        </div>
       </section>
+
+      {/* Info note */}
+      <div
+        style={{
+          backgroundColor: "var(--surface)",
+          border: "1px solid var(--border)",
+          borderLeft: "4px solid #16324f",
+          borderRadius: "0 8px 8px 0",
+          padding: "20px 28px",
+          boxShadow: "0 1px 4px rgba(22, 50, 79, 0.05)",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: '"Segoe UI", system-ui, sans-serif',
+            fontSize: 14,
+            color: "#667085",
+            lineHeight: 1.75,
+          }}
+        >
+          <strong style={{ color: "#16324f" }}>
+            Department of Computer Science and Engineering
+          </strong>{" "}
+          · East West University, Dhaka 1212, Bangladesh. All courses delivered
+          at the Main Campus. For enrollment and syllabus queries, contact{" "}
+          <a
+            href="mailto:rifat.rashid@ewubd.edu"
+            style={{ color: "#8a1538", fontWeight: 600 }}
+          >
+            rifat.rashid@ewubd.edu
+          </a>
+          .
+        </p>
+      </div>
     </div>
   );
 }

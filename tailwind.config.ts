@@ -9,28 +9,57 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "avl-teal": "#0e7c6a",
-        "avl-teal-light": "#e8f5f2",
-        "avl-amber": "#c96a0a",
-        "avl-amber-light": "#fef3e2",
-        "avl-navy": "#1b2a4a",
-        "avl-navy-light": "#eef1f8",
-        "avl-purple": "#6c3fc5",
-        "avl-purple-light": "#f2eeff",
-        ink: "#0f0e0c",
-        "ink-2": "#2a2825",
-        muted: "#6b6860",
-        "muted-2": "#9c9890",
-        surface: "#fafaf7",
-        "surface-2": "#f2f1ec",
-        "surface-3": "#e8e6df",
-        border: "#e0ded6",
-        "border-2": "#cccac0",
+        /* Academic palette (design.md) */
+        primary: "#16324f",
+        "primary-container": "#1e3a5f",
+        burgundy: "#8a1538",
+
+        /* Surfaces */
+        canvas: "#f7f8fb",
+        surface: "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f3f4f7",
+        "surface-container": "#eeeff3",
+        "surface-container-high": "#e8eaee",
+        "surface-variant": "#d7dde6",
+
+        /* Text */
+        "on-surface": "#172033",
+        "on-surface-variant": "#667085",
+
+        /* Borders */
+        border: "#d7dde6",
+        "outline-variant": "#d7dde6",
+        outline: "#8c93a0",
+
+        /* Domain accents */
+        "accent-teal": "#0f766e",
+        "accent-amber": "#b45309",
+        "accent-purple": "#7c3aed",
+        "accent-navy": "#16324f",
       },
       fontFamily: {
-        fraunces: ["Fraunces", "serif"],
-        "dm-sans": ["DM Sans", "sans-serif"],
-        "space-mono": ["Space Mono", "monospace"],
+        sans: ['"Segoe UI"', "system-ui", "sans-serif"],
+        mono: ["ui-monospace", '"Cascadia Code"', '"Segoe UI Mono"', "Consolas", "monospace"],
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        full: "9999px",
+      },
+      spacing: {
+        xs: "4px",
+        sm: "8px",
+        md: "16px",
+        lg: "24px",
+        xl: "48px",
+        gutter: "24px",
+        "margin-desktop": "64px",
+        "max-width": "1280px",
+      },
+      maxWidth: {
+        "max-width": "1280px",
       },
     },
   },

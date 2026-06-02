@@ -1,27 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap');
+/* System fonts — no external import */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --ink: #0f0e0c;
-  --ink-2: #2a2825;
-  --muted: #6b6860;
-  --muted-2: #9c9890;
-  --surface: #fafaf7;
-  --surface-2: #f2f1ec;
-  --surface-3: #e8e6df;
-  --border: #e0ded6;
-  --border-2: #cccac0;
-  --avl-teal: #0e7c6a;
-  --avl-teal-light: #e8f5f2;
-  --avl-amber: #c96a0a;
-  --avl-amber-light: #fef3e2;
-  --avl-navy: #1b2a4a;
-  --avl-navy-light: #eef1f8;
-  --avl-purple: #6c3fc5;
-  --avl-purple-light: #f2eeff;
+  /* Academic blue (primary) + burgundy accent */
+  --primary: #16324f;
+  --primary-container: #1e3a5f;
+  --burgundy: #8a1538;
+
+  /* Paper-like surfaces */
+  --canvas: #f7f8fb;
+  --surface: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f4f7;
+  --surface-container: #eeeff3;
+  --surface-container-high: #e8eaee;
+  --surface-variant: #d7dde6;
+
+  /* Text */
+  --ink: #172033;
+  --on-surface: #172033;
+  --on-surface-variant: #667085;
+  --muted: #667085;
+
+  /* Borders */
+  --border: #d7dde6;
+  --outline-variant: #d7dde6;
+  --outline: #8c93a0;
+
+  /* Domain accents — muted, functional */
+  --accent-teal: #0f766e;
+  --accent-teal-bg: #f0fdf9;
+  --accent-amber: #b45309;
+  --accent-amber-bg: #fefce8;
+  --accent-navy: #16324f;
+  --accent-navy-bg: #eff2f7;
+  --accent-purple: #7c3aed;
+  --accent-purple-bg: #f5f3ff;
 }
 
 * {
@@ -30,67 +47,237 @@
   margin: 0;
 }
 
-html,
-body {
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--surface);
+  background-color: var(--canvas);
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.018;
-  pointer-events: none;
-  z-index: 9999;
-}
-
 @layer components {
-  .avl-badge {
-    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider;
+  /* ── Typography ─────────────────────────────────────────── */
+
+  .ds-display {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--primary);
   }
-  .avl-badge-teal {
-    background-color: var(--avl-teal-light);
-    color: var(--avl-teal);
-    @apply avl-badge;
+  .ds-headline-md {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--primary);
   }
-  .avl-badge-amber {
-    background-color: var(--avl-amber-light);
-    color: var(--avl-amber);
-    @apply avl-badge;
+  .ds-headline-sm {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+    color: var(--primary);
   }
-  .avl-badge-navy {
-    background-color: var(--avl-navy-light);
-    color: var(--avl-navy);
-    @apply avl-badge;
-  }
-  .avl-badge-purple {
-    background-color: var(--avl-purple-light);
-    color: var(--avl-purple);
-    @apply avl-badge;
-  }
-  .avl-section-rule {
-    height: 1px;
-    background: linear-gradient(to right, var(--avl-teal), var(--border), transparent);
-    border: none;
-    @apply mb-8;
-  }
-  .card-lift {
-    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
-  }
-  .link-underline {
-    @apply underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all;
-  }
-  .tag-pill {
-    font-family: 'Space Mono', monospace;
+  .ds-label-caps {
+    font-family: "Segoe UI", system-ui, sans-serif;
     font-size: 11px;
-    background-color: var(--surface-3);
-    color: var(--muted);
-    @apply inline-block px-2 py-0.5 rounded-sm;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 16px;
+  }
+  .ds-label-code {
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--primary);
+  }
+
+  /* ── Cards ──────────────────────────────────────────────── */
+
+  .research-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 1px 3px rgba(22, 50, 79, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .research-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 28px rgba(22, 50, 79, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ── Course list rows (teaching page) ───────────────────── */
+
+  .course-row {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(22, 50, 79, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .course-row:hover {
+    border-color: var(--primary);
+    box-shadow: 0 6px 20px rgba(22, 50, 79, 0.09);
+  }
+
+  /* ── Publication list ───────────────────────────────────── */
+
+  .pub-item {
+    padding: 18px 16px;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .pub-item:hover {
+    background-color: var(--surface-container-low);
+    box-shadow: inset 3px 0 0 var(--burgundy);
+  }
+
+  /* ── Section header — academic pattern ─────────────────── */
+
+  /*
+   * Usage:
+   *   <div class="section-head">
+   *     <p class="section-label">UPPERCASE LABEL</p>
+   *     <div class="title-row">
+   *       <h2 class="ds-headline-md">Title</h2>
+   *       <optional link />
+   *     </div>
+   *   </div>
+   */
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-head .section-label {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+  }
+  .section-head .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  /* Compatibility shim — hides old horizontal line element */
+  .section-head .line {
+    display: none;
+  }
+
+  /* ── Buttons ────────────────────────────────────────────── */
+
+  .btn-primary {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    background-color: var(--primary-container);
+    box-shadow: 0 4px 12px rgba(22, 50, 79, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: var(--primary);
+    padding: 9px 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .btn-secondary:hover {
+    border-color: var(--primary);
+    background-color: var(--surface-container-low);
+    color: var(--primary);
+  }
+
+  /* ── Tag pill ───────────────────────────────────────────── */
+
+  .tag-pill {
+    font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background-color: var(--surface-container-low);
+    color: var(--on-surface-variant);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid var(--border);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Status badge (flat, no animation) ─────────────────── */
+
+  .status-badge {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background-color: var(--surface-container);
+    color: var(--on-surface-variant);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* ── Footer links ───────────────────────────────────────── */
+
+  .footer-link {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--burgundy);
   }
 }

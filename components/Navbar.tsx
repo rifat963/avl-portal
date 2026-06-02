@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
-  { href: "/teaching", label: "Teaching" },
-  { href: "/research", label: "Research" },
+  { href: "/", label: "Home" },
+  { href: "/teaching", label: "Courses" },
   { href: "/tutorials", label: "Tutorials" },
-  { href: "/about", label: "About" },
+  { href: "/research", label: "Research" },
+  { href: "/about", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -16,35 +17,110 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50" style={{ height: "56px", backgroundColor: "rgba(250,250,247,0.88)", backdropFilter: "blur(8px)", borderBottom: "1px solid var(--border)" }}>
-      <div className="flex items-center justify-between h-full px-6" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 no-underline">
-          <div className="flex items-center justify-center rounded" style={{ width: 32, height: 32, backgroundColor: "var(--avl-navy)", flexShrink: 0 }}>
-            <span style={{ color: "white", fontFamily: "'Space Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: "-0.5px" }}>AVL</span>
-          </div>
-          <span style={{ fontFamily: "'Fraunces', serif", fontSize: 15, fontWeight: 600, color: "var(--avl-navy)", letterSpacing: "-0.2px" }}>
-            Applied Vision Lab
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        width: "100%",
+        backgroundColor: "rgba(255,255,255,0.95)",
+        backdropFilter: "blur(10px)",
+        borderBottom: "1px solid var(--border)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "0 64px",
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          gap: 20,
+        }}
+        className="px-4 md:px-16"
+      >
+        <Link
+          href="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            color: "var(--ink)",
+            textDecoration: "none",
+            flexShrink: 0,
+          }}
+        >
+          <span
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: 7,
+              background: "linear-gradient(135deg, #16324f 0%, #1e3a5f 100%)",
+              borderTop: "2px solid #8a1538",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 13,
+              fontWeight: 800,
+              letterSpacing: "0.04em",
+              lineHeight: 1,
+              boxShadow: "0 2px 8px rgba(22, 50, 79, 0.2)",
+            }}
+            aria-hidden="true"
+          >
+            AVL
+          </span>
+          <span style={{ lineHeight: 1.15 }}>
+            <span style={{ display: "block", fontSize: 14, fontWeight: 800, color: "var(--ink)" }}>
+              Applied Vision Lab
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: "0.07em",
+                textTransform: "uppercase",
+                color: "var(--muted)",
+              }}
+            >
+              East West University
+            </span>
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-1">
+        <nav
+          className="hidden md:flex"
+          style={{
+            alignItems: "center",
+            gap: 2,
+            flex: 1,
+            borderLeft: "1px solid var(--border)",
+            paddingLeft: 20,
+            marginLeft: 4,
+          }}
+        >
           {links.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(link.href + "/");
+            const active =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname === link.href || pathname.startsWith(link.href + "/");
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 style={{
-                  padding: "6px 14px",
-                  borderRadius: 6,
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: active ? "var(--avl-teal)" : "var(--ink-2)",
-                  backgroundColor: active ? "var(--avl-teal-light)" : "transparent",
+                  padding: "8px 14px",
+                  borderBottom: active ? "2px solid var(--burgundy)" : "2px solid transparent",
+                  color: active ? "var(--ink)" : "var(--muted)",
+                  fontFamily: '"Segoe UI", system-ui, sans-serif',
+                  fontSize: 13.5,
+                  fontWeight: active ? 700 : 500,
                   textDecoration: "none",
-                  transition: "all 0.15s",
+                  transition: "color 0.15s ease, border-color 0.15s ease",
+                  borderRadius: "4px 4px 0 0",
                 }}
               >
                 {link.label}
@@ -53,24 +129,50 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile hamburger */}
+        <a
+          href="https://scholar.google.com/citations?user=fXu1UdgAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:inline-flex btn-secondary"
+          style={{ padding: "7px 16px", fontSize: 11, marginLeft: "auto" }}
+        >
+          Scholar ↗
+        </a>
+
         <button
-          className="sm:hidden flex flex-col gap-1.5 p-1.5 rounded"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", cursor: "pointer" }}
+          className="md:hidden"
+          onClick={() => setMenuOpen((open) => !open)}
+          style={{
+            marginLeft: "auto",
+            border: "1px solid var(--border)",
+            background: "var(--surface)",
+            borderRadius: 6,
+            cursor: "pointer",
+            padding: 8,
+            color: "var(--ink)",
+          }}
           aria-label="Toggle menu"
         >
-          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "var(--ink)", borderRadius: 1 }} />
-          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "var(--ink)", borderRadius: 1 }} />
-          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "var(--ink)", borderRadius: 1 }} />
+          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "currentColor", marginBottom: 4 }} />
+          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "currentColor", marginBottom: 4 }} />
+          <span style={{ display: "block", width: 20, height: 2, backgroundColor: "currentColor" }} />
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="sm:hidden" style={{ backgroundColor: "var(--surface)", borderBottom: "1px solid var(--border)", padding: "8px 24px 12px" }}>
+        <div
+          className="md:hidden"
+          style={{
+            borderTop: "1px solid var(--border)",
+            backgroundColor: "var(--surface)",
+            padding: "12px 16px 16px",
+          }}
+        >
           {links.map((link) => {
-            const active = pathname === link.href;
+            const active =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname === link.href || pathname.startsWith(link.href + "/");
             return (
               <Link
                 key={link.href}
@@ -78,12 +180,14 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   display: "block",
-                  padding: "10px 0",
-                  fontSize: 15,
-                  fontWeight: 500,
-                  color: active ? "var(--avl-teal)" : "var(--ink-2)",
+                  padding: "11px 10px",
+                  borderRadius: 6,
+                  color: active ? "var(--ink)" : "var(--muted)",
+                  backgroundColor: active ? "var(--surface-container-low)" : "transparent",
+                  fontFamily: '"Segoe UI", system-ui, sans-serif',
+                  fontSize: 14,
+                  fontWeight: active ? 700 : 500,
                   textDecoration: "none",
-                  borderBottom: "1px solid var(--border)",
                 }}
               >
                 {link.label}

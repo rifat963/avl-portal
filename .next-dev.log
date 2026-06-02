@@ -1,0 +1,21 @@
+
+> avl-portal@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3001
+
+   ▲ Next.js 15.3.2
+   - Local:        http://127.0.0.1:3001
+   - Network:      http://127.0.0.1:3001
+
+ ✓ Starting...
+ ✓ Ready in 1783ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1479ms (736 modules)
+ GET / 200 in 1790ms
+ ✓ Compiled in 223ms (326 modules)
+ ✓ Compiled /_not-found in 323ms (726 modules)
+ GET / 404 in 716ms
+ GET /_next/static/css/app/layout.css?v=1780178762178 404 in 38ms
+ GET /_next/static/chunks/main-app.js?v=1780178762178 404 in 31ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 34ms
+ GET /_next/static/chunks/app/layout.js 404 in 40ms
+ GET /_next/static/chunks/app/page.js 404 in 36ms
