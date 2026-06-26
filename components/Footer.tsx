@@ -1,140 +1,57 @@
 import Link from "next/link";
 
-const externalLinks = [
-  { label: "YouTube", href: "https://youtube.com" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/rifat963" },
-  { label: "Google Scholar", href: "https://scholar.google.com/citations?user=fXu1UdgAAAAJ&hl=en" },
-  { label: "ResearchGate", href: "https://www.researchgate.net/profile/Mohammad-Rashid-132" },
-];
-
 export default function Footer() {
   return (
-    <footer
-      style={{
-        backgroundColor: "var(--surface)",
-        borderTop: "2px solid var(--border)",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "52px 64px 40px",
-        }}
-        className="px-4 md:px-16"
-      >
-        <div
-          className="flex flex-col md:flex-row justify-between items-start"
-          style={{ gap: 40, marginBottom: 40 }}
-        >
-          {/* Brand block */}
-          <div style={{ maxWidth: 340 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-              <span
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 6,
-                  background: "linear-gradient(135deg, #16324f 0%, #1e3a5f 100%)",
-                  borderTop: "2px solid #8a1538",
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: "0.04em",
-                  flexShrink: 0,
-                }}
-              >
-                AVL
-              </span>
-              <p
-                style={{
-                  fontFamily: '"Segoe UI", system-ui, sans-serif',
-                  fontSize: 14,
-                  fontWeight: 800,
-                  color: "#16324f",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Applied Vision Lab
-              </p>
-            </div>
-            <p
-              style={{
-                fontFamily: '"Segoe UI", system-ui, sans-serif',
-                fontSize: 13.5,
-                color: "var(--on-surface-variant)",
-                lineHeight: 1.7,
-              }}
-            >
-              Teaching, research and tutorials in computer vision & applied AI
-              at East West University, Bangladesh.
-            </p>
-          </div>
-
-          {/* External links */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "8px 40px",
-            }}
-          >
-            {externalLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                {l.label} ↗
-              </a>
-            ))}
-          </div>
+    <footer className="border-t border-[var(--border)] bg-[var(--surface)] mt-auto">
+      <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-[var(--muted)]">
+        <div>
+          <div className="font-bold text-[var(--ink)] mb-1">Applied AI Research Group</div>
+          <div>Department of CSE, East West University</div>
+          <div>Aftabnagar, Dhaka-1212, Bangladesh</div>
+          <div className="mt-2">Research in applied AI, computer vision, NLP, IoT, and intelligent systems.</div>
         </div>
-
-        {/* Bottom bar */}
-        <div
-          style={{
-            borderTop: "1px solid var(--border)",
-            paddingTop: 20,
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          <p
-            style={{
-              fontFamily: '"Segoe UI", system-ui, sans-serif',
-              fontSize: 12,
-              color: "var(--on-surface-variant)",
-            }}
-          >
-            © {new Date().getFullYear()} Dr. Mohammad Rifat Ahmmad Rashid · East West University
-          </p>
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+        <div>
+          <div className="font-bold text-[var(--ink)] mb-1">Faculty</div>
+          <div>Dr. Shamim H Ripon · Professor</div>
+          <div>Dr. Ahmed Wasif Reza · Professor &amp; Dean</div>
+          <div>Dr. Raihan Ul Islam · Associate Professor</div>
+          <div>Dr. Mohammad Rifat Ahmmad Rashid · Associate Professor</div>
+        </div>
+        <div>
+          <div className="font-bold text-[var(--ink)] mb-1">Connect</div>
+          {[
+            { label: "EWU CSE Department ↗", href: "https://fse.ewubd.edu/computer-science-engineering" },
+            { label: "Google Scholar ↗", href: "https://scholar.google.com/citations?user=fXu1UdgAAAAJ&hl=en" },
+            { label: "ResearchGate ↗", href: "https://www.researchgate.net/profile/Mohammad-Rashid-132" },
+            { label: "LinkedIn ↗", href: "https://linkedin.com/in/rifat963" },
+          ].map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block hover:text-[var(--ink)] transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
+          <div className="mt-3 border-t border-[var(--border)] pt-3 flex flex-wrap gap-3">
             {[
-              { label: "Teaching", href: "/teaching" },
-              { label: "Research", href: "/research" },
-              { label: "Tutorials", href: "/tutorials" },
-              { label: "About", href: "/about" },
+              { label: "People", href: "/team" },
+              { label: "Projects", href: "/projects" },
+              { label: "Publications", href: "/publications" },
+              { label: "Contact", href: "/contact" },
             ].map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className="footer-link"
-                style={{ fontSize: 12 }}
-              >
+              <Link key={l.label} href={l.href} className="hover:text-[var(--ink)] transition-colors text-xs">
                 {l.label}
               </Link>
             ))}
           </div>
+        </div>
+      </div>
+      <div className="border-t border-[var(--border)]">
+        <div className="max-w-7xl mx-auto px-4 py-3 text-xs text-[var(--muted)]">
+          © {new Date().getFullYear()} Applied AI Research Group · East West University · Department of Computer Science and Engineering
         </div>
       </div>
     </footer>

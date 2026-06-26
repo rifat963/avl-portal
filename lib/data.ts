@@ -1,3 +1,126 @@
+export const groupInfo = {
+  name: "Applied AI Research Group",
+  shortName: "AARG",
+  department: "Department of Computer Science and Engineering",
+  university: "East West University",
+  address: "A/2, Jahurul Islam Avenue, Jahurul Islam City, Aftabnagar, Dhaka-1212, Bangladesh",
+  email: "cse@ewubd.edu",
+  website: "https://fse.ewubd.edu/computer-science-engineering",
+  description:
+    "We are a research group at East West University focused on applied artificial intelligence, computer vision, natural language processing, brain-computer interfaces, IoT, and knowledge graphs. Our work spans foundational research and real-world applications with societal impact.",
+  researchThemes: [
+    "Applied AI & Machine Learning",
+    "Computer Vision",
+    "Natural Language Processing",
+    "Brain-Computer Interfaces",
+    "Internet of Things",
+    "Knowledge Graphs & Semantic Web",
+    "Graph Neural Networks",
+    "Precision Agriculture AI",
+  ],
+};
+
+export type FacultyRole = "Professor" | "Associate Professor";
+
+export const faculty = [
+  {
+    slug: "dshr",
+    name: "Dr. Shamim H Ripon",
+    role: "Professor" as FacultyRole,
+    email: "dshr@ewubd.edu",
+    office: "Room No# 647",
+    phone: "Ext: 262",
+    photo: "https://fse.ewubd.edu/storage/app/uploads/public/6a3/d68/29c/6a3d6829c9668646940456.jpeg",
+    profileUrl: "https://fse.ewubd.edu/computer-science-engineering/faculty-view/dshr",
+    bio: "Professor Ripon is a senior faculty member with a PhD from the University of Southampton, UK, and post-doctoral experience at the Universities of Glasgow and York. His research spans software engineering, NLP, computer vision, bioinformatics, and data analytics.",
+    education: [
+      "PhD, Computer Science — University of Southampton, UK",
+      "MSc, Computer Science — National University of Singapore",
+      "BSc, Computer Science and Engineering — Khulna University",
+    ],
+    interests: ["Software Engineering", "NLP", "Computer Vision", "Data Analytics", "Bioinformatics", "Formal Verification"],
+    achievements: "Multiple best paper awards; Elsevier outstanding peer review recognition; Fellow of Bangladesh Computer Society",
+  },
+  {
+    slug: "wasif",
+    name: "Dr. Ahmed Wasif Reza",
+    role: "Professor" as FacultyRole,
+    email: "wasif@ewubd.edu",
+    office: "Room No# 646",
+    phone: "Ext: 394",
+    photo: "https://fse.ewubd.edu/storage/app/uploads/public/605/33f/fe5/60533ffe585f0525662684.jpg",
+    profileUrl: "https://fse.ewubd.edu/computer-science-engineering/faculty-view/wasif",
+    bio: "Dr. Reza is a Professor and Dean of the Faculty of Sciences and Engineering at EWU, with a PhD from the University of Malaya. He has authored 400+ research papers with 4,200+ citations (h-index: 31) and holds the Chartered Engineer (CEng) credential from the Engineering Council (UK).",
+    education: [
+      "PhD — University of Malaya, Malaysia",
+      "M.Eng.Sc. — Multimedia University, Malaysia",
+      "BSc (Hons), Computer Science and Engineering — Khulna University, Bangladesh",
+    ],
+    interests: ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Brain-Computer Interfaces", "IoT", "Biomedical Image Processing", "Robotics", "Wireless Communications"],
+    achievements: "400+ papers, 4,200+ citations, h-index 31; Top 3% Scientist in CS (AD Scientific Index 2024–2025); Chartered Engineer (CEng)",
+  },
+  {
+    slug: "raihan-islam",
+    name: "Dr. Raihan Ul Islam",
+    role: "Associate Professor" as FacultyRole,
+    email: "raihan.islam@ewubd.edu",
+    office: "Room No. 256",
+    phone: "Ext: 411",
+    photo: "https://fse.ewubd.edu/storage/app/uploads/public/654/b5d/f47/654b5df47ef14304470505.jpg",
+    profileUrl: "https://fse.ewubd.edu/computer-science-engineering/faculty-view/raihan.islam",
+    bio: "Dr. Islam is an Associate Professor with a PhD from Luleå University of Technology, Sweden, and post-doctoral experience at Luleå and Ericsson AB. His research focuses on expert systems, IoT, smart city applications, and cloud and edge computing.",
+    education: [
+      "PhD, Pervasive Mobile Computing — Luleå University of Technology, Sweden",
+      "MSc, Computer Science and Engineering — Luleå University of Technology, Sweden",
+      "BSc, Computer Science and Engineering — Khulna University, Bangladesh",
+    ],
+    interests: ["Expert Systems", "Internet of Things", "Smart City", "Cloud & Edge Computing", "Artificial Intelligence", "Machine Learning"],
+    achievements: "60+ publications in IEEE and Springer; Best paper award at IEEE INFOCOM 2017; Researcher at Ericsson AB, Sweden",
+  },
+  {
+    slug: "rifat-rashid",
+    name: "Dr. Mohammad Rifat Ahmmad Rashid",
+    role: "Associate Professor" as FacultyRole,
+    email: "rifat.rashid@ewubd.edu",
+    office: "Room No. 646",
+    phone: "",
+    photo: "https://fse.ewubd.edu/storage/app/uploads/public/64b/517/679/64b5176796ce4173333910.jpg",
+    profileUrl: "https://fse.ewubd.edu/computer-science-engineering/faculty-view/rifat.rashid",
+    bio: "Dr. Rashid is an Associate Professor with a PhD from the Polytechnic University of Turin, Italy. His research spans computer vision, NLP, large language models, semantic web, and blockchain. He leads AVL research in applied CV and graph-enhanced AI systems.",
+    education: [
+      "PhD, Computer and Control Engineering — Polytechnic University of Turin, Italy",
+      "MSc, Computer Engineering — University of Pavia, Italy",
+      "BEng, Computer Science and Engineering — Khulna University, Bangladesh",
+    ],
+    interests: ["Computer Vision", "NLP & LLMs", "Knowledge Graphs", "Semantic Web", "Blockchain", "Brain-Computer Interfaces", "Precision Agriculture AI"],
+    achievements: "72+ peer-reviewed publications in Elsevier, IEEE, Nature, IOS Press; 4 EWU CRT-funded research projects",
+  },
+];
+
+export const researchAssistants = [
+  {
+    slug: "ra-1",
+    name: "Research Assistant",
+    role: "Graduate Research Assistant",
+    status: "open",
+    note: "Position to be announced",
+  },
+  {
+    slug: "ra-2",
+    name: "Research Assistant",
+    role: "Graduate Research Assistant",
+    status: "open",
+    note: "Position to be announced",
+  },
+  {
+    slug: "ra-3",
+    name: "Research Assistant",
+    role: "Undergraduate Research Assistant",
+    status: "open",
+    note: "Position to be announced",
+  },
+];
+
 export const profile = {
   name: "Mohammad Rifat Ahmmad Rashid",
   shortName: "Rifat Rashid",
@@ -11,6 +134,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/mohammad-rifat-rashid-73982a5b/",
   website: "https://rifat963.github.io",
   office: "Room #646, Department of CSE, EWU",
+  phone: "Ext: 446",
   interests: [
     "Applied AI & Machine Learning",
     "Computer Vision",

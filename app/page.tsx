@@ -1,421 +1,208 @@
 import Link from "next/link";
-import { courses, projects, recentPublications, profile } from "@/lib/data";
+import { Users, FlaskConical, BookOpen, Mail, ExternalLink, ArrowRight } from "lucide-react";
+import { groupInfo, projects, recentPublications, faculty } from "@/lib/data";
 
-const accentMap: Record<string, { color: string; bg: string; label: string }> = {
-  teal:   { color: "#16324f", bg: "var(--surface-container-low)", label: "COMPUTER VISION" },
-  amber:  { color: "#16324f", bg: "var(--surface-container-low)", label: "IMAGE PROCESSING" },
-  purple: { color: "#16324f", bg: "var(--surface-container-low)", label: "DATA SCIENCE" },
-  navy:   { color: "#16324f", bg: "var(--surface-container-low)", label: "KNOWLEDGE GRAPHS" },
+const domainColor: Record<string, string> = {
+  teal:   "var(--accent-teal)",
+  amber:  "var(--accent-amber)",
+  purple: "var(--accent-purple)",
+  navy:   "var(--accent-navy)",
 };
 
 export default function HomePage() {
   return (
-    <>
-      {/* ── Hero ──────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: "56px 64px 64px",
-          maxWidth: 1280,
-          margin: "0 auto",
-        }}
-        className="px-4 md:px-16"
-      >
-        <div
-          style={{
-            border: "1px solid #d7dde6",
-            borderLeft: "5px solid #16324f",
-            borderTop: "5px solid #8a1538",
-            background: "#ffffff",
-            boxShadow: "0 18px 44px rgba(22, 50, 79, 0.08)",
-            padding: "40px 48px",
-          }}
-        >
-          {/* Top row: label + author */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              flexWrap: "wrap",
-              gap: 16,
-              marginBottom: 20,
-            }}
-          >
-            <p className="ds-label-caps" style={{ color: "#8a1538" }}>
-              Academic Portfolio · East West University
+    <div>
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section className="border-b border-[var(--border)] bg-[var(--surface)]">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
+          <div className="max-w-4xl">
+            <div className="text-xs font-semibold uppercase tracking-widest text-[var(--burgundy)] mb-3">
+              {groupInfo.department} · {groupInfo.university}
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-[var(--ink)] leading-tight mb-4">
+              {groupInfo.name}
+            </h1>
+            <p className="text-base md:text-lg text-[var(--muted)] leading-relaxed max-w-2xl mb-8">
+              {groupInfo.description}
             </p>
-            <p
-              style={{
-                fontFamily: '"Segoe UI", system-ui, sans-serif',
-                fontSize: 13,
-                color: "#667085",
-              }}
-            >
-              <span style={{ fontWeight: 600, color: "#172033" }}>
-                Dr. Mohammad Rifat Ahmmad Rashid
-              </span>
-              {" · "}Associate Professor, CSE
-            </p>
-          </div>
 
-          <h1 className="ds-display" style={{ marginBottom: 16 }}>
-            Teaching · Research · Tutorials in Vision & AI
-          </h1>
-          <p
-            style={{
-              fontFamily: '"Segoe UI", system-ui, sans-serif',
-              fontSize: 17,
-              lineHeight: "28px",
-              color: "#667085",
-              maxWidth: 620,
-              marginBottom: 32,
-            }}
-          >
-            The Applied Vision Lab bridges theoretical machine learning with
-            socially impactful applications in computer vision and applied AI
-            at East West University.
-          </p>
+            {/* Research theme pills */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {groupInfo.researchThemes.map((theme) => (
+                <span
+                  key={theme}
+                  className="text-xs font-mono px-3 py-1.5 rounded border border-[var(--border)] bg-[var(--surface-container-low)] text-[var(--muted)]"
+                >
+                  {theme}
+                </span>
+              ))}
+            </div>
 
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 36 }}>
-            <Link href="/teaching" className="btn-primary">
-              View Courses
-            </Link>
-            <Link href="/research" className="btn-secondary">
-              Research
-            </Link>
-            <Link href="/about" className="btn-secondary">
-              Contact
-            </Link>
-          </div>
-
-          {/* Feature tiles */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 12,
-            }}
-          >
-            {[
-              {
-                title: "Live Course Dashboards",
-                note: "CSE445, CSE438, and AIML505 dashboards with lectures, modules, labs, and assessments.",
-                accent: "#8a1538",
-              },
-              {
-                title: "Research Portfolio",
-                note: "Four active EWU CRT-funded grants in computer vision, BCI, knowledge graphs, and precision agriculture.",
-                accent: "#16324f",
-              },
-              {
-                title: "Academic Lab Hub",
-                note: "Teaching, research, tutorials, and contact share one unified visual system.",
-                accent: "#16324f",
-              },
-            ].map(({ title, note, accent }) => (
-              <div
-                key={title}
-                style={{
-                  background: "var(--surface)",
-                  border: "1px solid var(--border)",
-                  borderLeft: `3px solid ${accent}`,
-                  padding: "16px 20px",
-                  borderRadius: "0 6px 6px 0",
-                }}
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/team"
+                className="inline-flex items-center gap-2 rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
               >
-                <p
-                  style={{
-                    fontFamily: '"Segoe UI", system-ui, sans-serif',
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: "#172033",
-                    marginBottom: 6,
-                  }}
-                >
-                  {title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: '"Segoe UI", system-ui, sans-serif',
-                    fontSize: 12,
-                    lineHeight: 1.6,
-                    color: "#667085",
-                  }}
-                >
-                  {note}
-                </p>
-              </div>
-            ))}
+                <Users size={15} /> Meet the Team
+              </Link>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-semibold text-[var(--ink)] hover:bg-[var(--surface-2)] transition-colors"
+              >
+                <FlaskConical size={15} /> Research Projects
+              </Link>
+              <Link
+                href="/publications"
+                className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-semibold text-[var(--ink)] hover:bg-[var(--surface-2)] transition-colors"
+              >
+                <BookOpen size={15} /> Publications
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-semibold text-[var(--ink)] hover:bg-[var(--surface-2)] transition-colors"
+              >
+                <Mail size={15} /> Contact
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <div
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "8px 64px 80px" }}
-        className="px-4 md:px-16"
-      >
-        {/* ── Teaching Hub ────────────────────────────────────────── */}
-        <section style={{ marginBottom: 72 }}>
+      <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+
+        {/* ── Faculty Snapshot ─────────────────────────────────── */}
+        <section>
           <div className="section-head">
-            <p className="section-label">Teaching</p>
+            <p className="section-label">Team</p>
             <div className="title-row">
-              <h2 className="ds-headline-md">Active Courses</h2>
-              <Link
-                href="/teaching"
-                style={{
-                  fontFamily: '"Segoe UI", system-ui, sans-serif',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  color: "#8a1538",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                All Courses →
+              <h2 className="ds-headline-md">Faculty Members</h2>
+              <Link href="/team" className="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] hover:underline whitespace-nowrap flex items-center gap-1">
+                All Members <ArrowRight size={12} />
               </Link>
             </div>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: 20,
-              alignItems: "stretch",
-            }}
-          >
-            {courses.map((c) => {
-              const acc = accentMap[c.color];
-              return (
-                <div
-                  key={c.code}
-                  className="research-card"
-                  style={{ gap: 0, padding: 0, borderTop: `3px solid ${acc.color}` }}
-                >
-                  {/* Card header with accent bg */}
-                  <div
-                    style={{
-                      padding: "20px 24px 16px",
-                      borderBottom: "1px solid var(--border)",
-                      background: acc.bg,
-                    }}
-                  >
-                    <p className="ds-label-caps" style={{ color: "#8a1538" }}>
-                      {acc.label}
-                    </p>
-                    <h3
-                      className="ds-headline-sm"
-                      style={{ marginTop: 10, lineHeight: 1.3, fontSize: 18 }}
-                    >
-                      {c.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: '"Segoe UI", system-ui, sans-serif',
-                        fontSize: 11,
-                        fontWeight: 600,
-                        color: acc.color,
-                        marginTop: 4,
-                        letterSpacing: "0.02em",
-                      }}
-                    >
-                      {c.code} · {c.level} · {c.credits} Credits
-                    </p>
-                  </div>
-
-                  {/* Card body */}
-                  <div style={{ padding: "16px 24px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-                    <p
-                      style={{
-                        fontFamily: '"Segoe UI", system-ui, sans-serif',
-                        fontSize: 13.5,
-                        color: "#667085",
-                        lineHeight: 1.65,
-                        marginBottom: 16,
-                        flexGrow: 1,
-                      }}
-                    >
-                      {c.desc}
-                    </p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
-                      {c.topics.slice(0, 3).map((t) => (
-                        <span key={t} className="tag-pill">{t}</span>
-                      ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {faculty.map((f) => (
+              <div key={f.slug} className="research-card gap-3 items-start">
+                <div className="flex items-center gap-3 mb-3">
+                  {f.photo ? (
+                    <img
+                      src={f.photo}
+                      alt={f.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-[var(--border)] flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                      {f.name.split(" ").slice(-1)[0][0]}
                     </div>
-                    <a
-                      href={c.dashboardUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                      style={{
-                        fontSize: 11,
-                        alignSelf: "flex-start",
-                      }}
-                    >
-                      Open Dashboard ↗
-                    </a>
+                  )}
+                  <div>
+                    <p className="text-xs text-[var(--burgundy)] font-semibold uppercase tracking-wide">{f.role}</p>
                   </div>
                 </div>
-              );
-            })}
+                <h3 className="text-sm font-bold text-[var(--ink)] leading-snug">{f.name}</h3>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {f.interests.slice(0, 3).map((i) => (
+                    <span key={i} className="tag-pill text-[10px]">{i}</span>
+                  ))}
+                </div>
+                <a
+                  href={f.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1 text-xs text-[var(--burgundy)] hover:underline font-semibold"
+                >
+                  Profile <ExternalLink size={10} />
+                </a>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ── Funded Research ──────────────────────────────────────── */}
-        <section style={{ marginBottom: 72 }}>
+        {/* ── Active Research Projects ─────────────────────────── */}
+        <section>
           <div className="section-head">
             <p className="section-label">Research</p>
             <div className="title-row">
-              <h2 className="ds-headline-md">Active Research Grants</h2>
-              <span className="status-badge">FY 2024–2025</span>
+              <h2 className="ds-headline-md">Active Research Projects</h2>
+              <Link href="/projects" className="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] hover:underline whitespace-nowrap flex items-center gap-1">
+                All Projects <ArrowRight size={12} />
+              </Link>
             </div>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: 20,
-            }}
-          >
-            {projects.map((p, i) => {
-              const acc = accentMap[p.color];
-              return (
-                <div key={`${p.ref}-${i}`} className="research-card">
-                  <p
-                    className="ds-label-caps"
-                    style={{ color: "#8a1538", marginBottom: 16 }}
-                  >
-                    {acc.label}
-                  </p>
-                  <h3
-                    className="ds-headline-sm"
-                    style={{ marginBottom: 12, fontSize: 15.5, lineHeight: 1.5, flexGrow: 1 }}
-                  >
-                    {p.shortTitle}
-                  </h3>
-                  <div
-                    style={{
-                      marginTop: "auto",
-                      paddingTop: 16,
-                      borderTop: "1px solid var(--border)",
-                    }}
-                  >
-                    <p className="ds-label-caps" style={{ color: "#667085", marginBottom: 4 }}>
-                      Funding Agency
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: '"Segoe UI", system-ui, sans-serif',
-                        fontSize: 14,
-                        fontWeight: 600,
-                        color: "#16324f",
-                      }}
-                    >
-                      {p.funder} · {p.year}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: 'ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace',
-                        fontSize: 11,
-                        color: acc.color,
-                        marginTop: 4,
-                        fontWeight: 600,
-                      }}
-                    >
-                      {p.role}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {projects.map((p, i) => (
+              <div
+                key={`${p.shortTitle}-${i}`}
+                className="research-card"
+                style={{ borderTop: `3px solid ${domainColor[p.color] ?? "var(--primary)"}` }}
+              >
+                <p className="ds-label-caps text-[var(--burgundy)] mb-3">{p.role} · {p.funder}</p>
+                <h3 className="ds-headline-sm text-[14px] leading-snug flex-1 mb-3">{p.shortTitle}</h3>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {p.tags.slice(0, 3).map((t) => (
+                    <span key={t} className="tag-pill">{t}</span>
+                  ))}
                 </div>
-              );
-            })}
+                <div className="mt-auto pt-3 border-t border-[var(--border)]">
+                  <p className="text-xs text-[var(--muted)]">EWU CRT Grant · {p.year}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ── Recent Publications ──────────────────────────────────── */}
+        {/* ── Recent Publications ──────────────────────────────── */}
         <section>
           <div className="section-head">
             <p className="section-label">Publications</p>
             <div className="title-row">
               <h2 className="ds-headline-md">Recent Publications</h2>
               <Link
-                href="/research#publications"
-                style={{
-                  fontFamily: '"Segoe UI", system-ui, sans-serif',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  color: "#8a1538",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
+                href="/publications"
+                className="text-xs font-bold uppercase tracking-widest text-[var(--burgundy)] hover:underline whitespace-nowrap flex items-center gap-1"
               >
-                View all {profile.stats.journals + profile.stats.conferences + profile.stats.bookChapters}+ →
+                All Publications <ArrowRight size={12} />
               </Link>
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="flex flex-col border border-[var(--border)] rounded-lg overflow-hidden bg-[var(--surface)]">
             {recentPublications.map((pub, i) => (
               <div
                 key={i}
-                className="pub-item"
-                style={{
-                  borderBottom: i < recentPublications.length - 1 ? "1px solid var(--border)" : "none",
-                }}
+                className="pub-item px-5 py-4"
+                style={{ borderBottom: i < recentPublications.length - 1 ? "1px solid var(--border)" : "none" }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-                  <p className="ds-label-code">[{pub.year}]</p>
+                <div className="flex justify-between items-start gap-3">
+                  <div className="flex-1">
+                    <p className="ds-label-code text-[var(--muted)] mb-1">[{pub.year}]</p>
+                    <p className="text-[14px] font-semibold text-[var(--ink)] leading-snug mb-1">{pub.title}</p>
+                    <p className="text-sm text-[var(--muted)]">{pub.journal}</p>
+                  </div>
                   <a
                     href={pub.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: "#8c93a0", fontSize: 18, lineHeight: 1, textDecoration: "none" }}
+                    className="text-[var(--muted)] hover:text-[var(--burgundy)] transition-colors flex-shrink-0 mt-1"
                   >
-                    ↗
+                    <ExternalLink size={14} />
                   </a>
                 </div>
-                <p
-                  style={{
-                    fontFamily: '"Segoe UI", system-ui, sans-serif',
-                    fontSize: 15,
-                    fontWeight: 600,
-                    color: "#172033",
-                    lineHeight: 1.5,
-                    marginBottom: 4,
-                  }}
-                >
-                  {pub.title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: '"Segoe UI", system-ui, sans-serif',
-                    fontSize: 13,
-                    color: "#667085",
-                  }}
-                >
-                  {pub.journal}
-                </p>
               </div>
             ))}
           </div>
 
-          <div style={{ marginTop: 28 }}>
-            <a
-              href={profile.scholar}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ display: "inline-flex" }}
-            >
-              View All Publications →
-            </a>
+          <div className="mt-5 flex gap-3">
+            <Link href="/publications" className="btn-secondary inline-flex items-center gap-1.5">
+              View All Publications <ArrowRight size={13} />
+            </Link>
           </div>
         </section>
+
       </div>
-    </>
+    </div>
   );
 }
