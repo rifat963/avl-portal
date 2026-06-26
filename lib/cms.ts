@@ -1,5 +1,6 @@
 import Database from "better-sqlite3";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
 export type BlogPost = {
@@ -40,7 +41,9 @@ export type TeamMemberInput = Omit<TeamMember, "id" | "researchInterests" | "edu
   education: string[];
 };
 
-const dbDir = path.join(process.cwd(), "data");
+const bundledDbPath = path.join(process.cwd(), "data", "avl-cms.sqlite");
+const isVercel = Boolean(process.env.VERCEL);
+const dbDir = isVercel ? path.join(os.tmpdir(), "avl-portal") : path.join(process.cwd(), "data");
 const dbPath = path.join(dbDir, "avl-cms.sqlite");
 
 let db: Database.Database | null = null;
@@ -48,6 +51,11 @@ let db: Database.Database | null = null;
 function getDatabase() {
   if (!db) {
     fs.mkdirSync(dbDir, { recursive: true });
+
+    if (isVercel && !fs.existsSync(dbPath) && fs.existsSync(bundledDbPath)) {
+      fs.copyFileSync(bundledDbPath, dbPath);
+    }
+
     db = new Database(dbPath);
     db.pragma("journal_mode = DELETE");
     db.pragma("foreign_keys = ON");

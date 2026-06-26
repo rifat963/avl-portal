@@ -27,7 +27,7 @@ export default async function CourseLecturesPage({ params }: { params: Promise<{
       </header>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(310px, 1fr))", gap: 16 }}>
-        {course.modules.map((module, index) => (
+        {course.modules.map((module) => (
           <article key={module.id} className="research-card" style={{ borderTop: "4px solid #16324f" }}>
             <p className="ds-label-code" style={{ marginBottom: 8 }}>{module.id} / {module.weekRange}</p>
             <h2 className="ds-headline-sm" style={{ fontSize: 17, marginBottom: 10 }}>{module.title}</h2>

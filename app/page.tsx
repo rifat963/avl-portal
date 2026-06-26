@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Users, FlaskConical, BookOpen, Mail, ExternalLink, ArrowRight } from "lucide-react";
 import { groupInfo, projects, recentPublications, faculty } from "@/lib/data";
 
@@ -87,9 +88,11 @@ export default function HomePage() {
               <div key={f.slug} className="research-card gap-3 items-start">
                 <div className="flex items-center gap-3 mb-3">
                   {f.photo ? (
-                    <img
+                    <Image
                       src={f.photo}
                       alt={f.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover border-2 border-[var(--border)] flex-shrink-0"
                     />
                   ) : (

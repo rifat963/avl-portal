@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { ExternalLink } from "lucide-react";
-import { projects, researchAreas, groupInfo } from "@/lib/data";
+import { projects, researchAreas } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Projects — Applied AI Research Group",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ExternalLink, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, Mail, MapPin } from "lucide-react";
 import { faculty, researchAssistants, groupInfo } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -46,9 +47,11 @@ export default function PeoplePage() {
                   style={{ borderTop: "4px solid var(--primary)" }}
                 >
                   {member.photo ? (
-                    <img
+                    <Image
                       src={member.photo}
                       alt={member.name}
+                      width={112}
+                      height={112}
                       className="w-28 h-28 rounded-full object-cover border-4 border-white"
                       style={{ boxShadow: "0 2px 12px rgba(22,50,79,0.15)" }}
                     />
