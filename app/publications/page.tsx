@@ -22,24 +22,6 @@ export default function PublicationsPage() {
       </header>
 
       {/* ── Stats Bar ────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-        {[
-          { num: `${profile.stats.journals}+`, label: "Journal Articles" },
-          { num: `${profile.stats.conferences}+`, label: "Conference Papers" },
-          { num: `${profile.stats.bookChapters}`, label: "Book Chapters" },
-          { num: `${profile.stats.fundedProjects}`, label: "Funded Projects" },
-        ].map((s) => (
-          <div
-            key={s.label}
-            className="p-5 rounded-lg text-center"
-            style={{ background: "var(--primary)" }}
-          >
-            <p className="text-3xl font-bold text-white mb-1">{s.num}</p>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">{s.label}</p>
-          </div>
-        ))}
-      </div>
-
       {/* ── Journal Articles ─────────────────────────────────── */}
       <PubSection
         title="Journal Articles"

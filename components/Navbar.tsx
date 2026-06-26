@@ -20,7 +20,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/95 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-5">
         <Link href="/" className="flex items-center gap-3 shrink-0 text-[var(--ink)] no-underline">
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--primary)] text-white border-t-2 border-[var(--burgundy)]">
