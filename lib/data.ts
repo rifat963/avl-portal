@@ -245,18 +245,6 @@ export const projects = [
     color: "navy" as ProjectColor,
     desc: "Enhancing retrieval-augmented generation pipelines with structured knowledge graph databases to improve factual accuracy and reasoning in large language model outputs.",
   },
-  {
-    title: "Applied Computer Vision for Precision Agriculture in Bangladesh",
-    shortTitle: "AgriVision Bangladesh",
-    role: "Co-PI" as const,
-    funder: "EWU CRT",
-    ref: "EWUCRT-2025",
-    year: 2025,
-    status: "active" as const,
-    tags: ["Computer Vision", "Precision Agriculture", "Deep Learning", "Drone Imaging", "Bangladesh"],
-    color: "amber" as ProjectColor,
-    desc: "Developing computer vision solutions for crop disease detection, yield prediction, and growth stage monitoring tailored to Bangladesh's agricultural landscape.",
-  },
 ];
 
 export const repositories = [
